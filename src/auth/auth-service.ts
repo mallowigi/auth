@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/users-service';
-import { User } from 'src/users/user';
 import { LoginRequest } from 'src/auth/login-request';
 
 @Injectable()
@@ -31,7 +30,7 @@ export class AuthService {
 
   }
 
-  private async getLoggedInUser(username: string, password: string): Promise<User> {
+  private async getLoggedInUser(username: string, password: string): Promise<any> {
     return this.usersService.getUser(username, password);
   }
 }
