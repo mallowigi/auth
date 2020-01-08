@@ -1,10 +1,15 @@
-import { logger, usersGrpcClientOptions }                                                        from '@micro/common/dist/src';
-import { GetUserRequest, GetUserResponse, IAuthService, LoginRequest, LoginResponse, LoginUser } from '@micro/common/src/types/auth';
-import { IUsersService }                                                                         from '@micro/common/src/types/users';
 import { Injectable }                                                                            from '@nestjs/common';
 import { Client, ClientGrpc }                                                                    from '@nestjs/microservices';
 import { first }                                                                                 from 'rxjs/operators';
 import { AuthModel }                                                                             from 'src/models/authModel';
+import {
+  IAuthService,
+  usersGrpcClientOptions,
+  IUsersService,
+  LoginResponse,
+  LoginRequest,
+  GetUserRequest, GetUserResponse, LoginUser, logger,
+} from '@mallowigi/common';
 
 @Injectable()
 export class AuthService implements IAuthService {
