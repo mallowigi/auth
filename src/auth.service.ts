@@ -1,19 +1,20 @@
-import { Injectable }                                                                            from '@nestjs/common';
-import { Client, ClientGrpc }                                                                    from '@nestjs/microservices';
-import { first }                                                                                 from 'rxjs/operators';
-import { AuthModel }                                                                             from 'src/models/authModel';
-import {
-  IAuthService,
-  usersGrpcClientOptions,
-  IUsersService,
-  LoginResponse,
-  LoginRequest,
-  GetUserRequest, GetUserResponse, LoginUser, logger,
-} from '@mallowigi/common';
+import { GetUserRequest, GetUserResponse, IAuthService, IUsersService, logger, LoginRequest, LoginResponse, LoginUser } from '@mallowigi/common';
+import { Injectable }                                                                                                   from '@nestjs/common';
+import { Client, ClientGrpc, Transport }                                                                                from '@nestjs/microservices';
+import { join }                                                                                                         from 'path';
+import { first }                                                                                                        from 'rxjs/operators';
+import { AuthModel }                                                                                                    from 'src/models/authModel';
 
 @Injectable()
 export class AuthService implements IAuthService {
-  @Client(usersGrpcClientOptions)
+  @Client({
+    transport: Transport.GRPC,
+    options:   {
+      url:       '0.0.0.0:50051',
+      package:   'service',
+      protoPath: join(__dirname, '../../common/proto/users/service.proto'),
+    },
+  })
   private client: ClientGrpc;
 
   private grpcUsersService: IUsersService;
