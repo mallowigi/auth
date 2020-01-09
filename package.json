@@ -35,7 +35,7 @@
     "ts-mongoose": "0.0.21"
   },
   "devDependencies": {
-    "@mallowigi/common": "^1.0.7",
+    "@mallowigi/common": "latest",
     "@nestjs/cli": "^6.9.0",
     "@nestjs/schematics": "^6.7.0",
     "@nestjs/testing": "^6.7.1",
