@@ -10,7 +10,7 @@ export class AuthService implements IAuthService {
   @Client(usersGrpcClient)
   private client: ClientGrpc;
 
-  private grpcUsersService: IUsersService;
+  private grpcUsersService;
 
   private static generateToken() {
     let text = '';
@@ -42,7 +42,8 @@ export class AuthService implements IAuthService {
 
       // Retrieve the token if the user was found
       const query = { userId: user.id };
-      let auth = await AuthModel.findToken(query);
+      let auth = await AuthModel.findOne(query);
+
       if (!auth) {
         const token = AuthService.generateToken();
         const data = { token, userId: user.id };
@@ -80,11 +81,11 @@ export class AuthService implements IAuthService {
 
   private async getLoggedInUser(username: string, password: string): Promise<any> {
     const usersList = await this.grpcUsersService.list({ query: { username, password } });
-    return usersList.pipe(first());
+    return usersList.pipe(first()).toPromise();
   }
 
   private async getUserById(userId: string): Promise<LoginUser> {
-    const user = await this.grpcUsersService.get({ id: userId });
+    const user = await this.grpcUsersService.get({ id: userId }).toPromise();
     return {
       id:       user.id,
       username: user.username,
