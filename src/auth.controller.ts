@@ -1,6 +1,6 @@
+import { AuthService } from '@mallowigi/auth/src/auth.service';
 import { Controller }  from '@nestjs/common';
 import { GrpcMethod }  from '@nestjs/microservices';
-import { AuthService } from 'src/auth.service';
 
 @Controller()
 export class AuthController {
