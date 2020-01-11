@@ -1,5 +1,5 @@
 import { AppModule }      from '@mallowigi/auth/src/app.module';
-import { authGrpcClient } from '@mallowigi/auth/src/clients.provider';
+import { authGrpcClient } from '@mallowigi/common';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory }    from '@nestjs/core';
 
