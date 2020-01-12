@@ -1,9 +1,21 @@
-import { usersGrpcClient }                                                                                              from '@mallowigi/auth/src/clients.provider';
-import { AuthModel }                                                                                                    from '@mallowigi/auth/src/models/authModel';
-import { GetUserRequest, GetUserResponse, IAuthService, IUsersService, logger, LoginRequest, LoginResponse, LoginUser } from '@mallowigi/common';
-import { Injectable }                                                                                                   from '@nestjs/common';
-import { Client, ClientGrpc }                                                                                           from '@nestjs/microservices';
-import { first }                                                                                                        from 'rxjs/operators';
+import { AuthModel }  from '@mallowigi/auth/src/models/authModel';
+import {
+  GetUserRequest,
+  GetUserResponse,
+  IAuthService,
+  IUsersService,
+  logger,
+  LoginRequest,
+  LoginResponse,
+  LoginUser,
+  usersGrpcClient,
+}                     from '@mallowigi/common';
+import { Injectable } from '@nestjs/common';
+import {
+  Client,
+  ClientGrpc,
+}                     from '@nestjs/microservices';
+import { first }      from 'rxjs/operators';
 
 @Injectable()
 export class AuthService implements IAuthService {
